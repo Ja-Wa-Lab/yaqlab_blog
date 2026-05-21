@@ -1,0 +1,23 @@
+---
+const { title = 'yaqlab blog', description = 'AI, infra, procesy' } = Astro.props;
+---
+<!doctype html>
+<html lang="pl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <style>
+      body { font-family: Inter, system-ui, sans-serif; margin: 0; background: #0a0a0a; color: #f3f3f3; }
+      .wrap { max-width: 860px; margin: 0 auto; padding: 2rem 1rem 4rem; }
+      a { color: #9fd0ff; }
+      .hero { position: relative; margin: 1.2rem 0 2rem; }
+      .hero img { width: 100%; border-radius: 14px; display: block; }
+      .hero h1 { position: absolute; left: 1rem; bottom: 1rem; margin:0; background: rgba(0,0,0,0.55); padding: .4rem .8rem; border-radius: 8px; }
+    </style>
+  </head>
+  <body>
+    <main class="wrap"><slot /></main>
+  </body>
+</html>
