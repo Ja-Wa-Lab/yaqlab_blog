@@ -9,7 +9,7 @@ hero_image: "https://images.unsplash.com/photo-1518773553398-650c184e0bb3?auto=f
 hero_alt: "Nowoczesne kontenery transportowe ustawione w porcie jako metafora kontenerów Dockera"
 hero_h1: "Docker bez tajemnic"
 seo_title: "Docker: co to jest i dlaczego warto go znać? | yaqlab"
-seo_description: "Praktyczne wyjaśnienie Dockera dla początkujących: czym są kontenery, dlaczego rozwiązują problem "u mnie działa" i jak pomagają szybciej wdrażać aplikacje."
+seo_description: 'Praktyczne wyjaśnienie Dockera dla początkujących: czym są kontenery, dlaczego rozwiązują problem "u mnie działa" i jak pomagają szybciej wdrażać aplikacje.'
 source_type: voice_chat
 source_ref: "chat-transcript-20260521-004"
 ---
