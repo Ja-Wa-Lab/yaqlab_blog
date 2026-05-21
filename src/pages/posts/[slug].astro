@@ -14,6 +14,9 @@ const { post } = Astro.props;
 const { Content } = await render(post);
 ---
 <BaseLayout title={post.data.seo_title} description={post.data.seo_description}>
+  <p style="margin:0 0 1rem;">
+    <a href="../../" aria-label="Wróć do strony głównej">← Wróć do landingu</a>
+  </p>
   <article>
     <div class="hero">
       <img src={post.data.hero_image} alt={post.data.hero_alt} loading="eager" />
