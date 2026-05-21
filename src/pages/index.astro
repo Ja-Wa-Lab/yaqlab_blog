@@ -8,7 +8,6 @@ const posts = (await getCollection('posts'))
 
 const featured = posts[0];
 const rest = posts.slice(1);
-const base = import.meta.env.BASE_URL;
 ---
 <BaseLayout title="yaqlab.com" description="Praktyczny blog o AI, infrastrukturze i procesach">
   <section>
@@ -25,10 +24,10 @@ const base = import.meta.env.BASE_URL;
       <article style="border:1px solid #2a2a2a;padding:1rem;border-radius:12px;margin-bottom:1.5rem;">
         <p style="margin:.2rem 0 .6rem;opacity:.8;">{featured.data.date.toISOString().slice(0,10)} · {featured.data.lang.toUpperCase()}</p>
         <h3 style="margin:.2rem 0 .7rem;">
-          <a href={`${base}posts/${featured.slug}/`}>{featured.data.title}</a>
+          <a href={`posts/${featured.slug}/`}>{featured.data.title}</a>
         </h3>
         <p>{featured.data.excerpt}</p>
-        <p><a href={`${base}posts/${featured.slug}/`}>Czytaj wpis →</a></p>
+        <p><a href={`posts/${featured.slug}/`}>Czytaj wpis →</a></p>
       </article>
     </section>
   ) : (
@@ -44,7 +43,7 @@ const base = import.meta.env.BASE_URL;
       <ul style="list-style:none;padding:0;display:grid;gap:.8rem;">
         {rest.map((post) => (
           <li style="border:1px solid #222;padding:.8rem;border-radius:10px;">
-            <a href={`${base}posts/${post.slug}/`}><strong>{post.data.title}</strong></a>
+            <a href={`posts/${post.slug}/`}><strong>{post.data.title}</strong></a>
             <div style="font-size:.92rem;opacity:.8;">{post.data.date.toISOString().slice(0,10)} · {post.data.lang.toUpperCase()}</div>
           </li>
         ))}
