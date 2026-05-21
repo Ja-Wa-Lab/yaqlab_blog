@@ -10,9 +10,9 @@ const featured = posts[0];
 const rest = posts.slice(1);
 ---
 <BaseLayout title="yaqlab.com" description="Praktyczny blog o AI, infrastrukturze i procesach">
-  <section>
+  <section style="margin-bottom:1.5rem;">
     <h1>yaqlab.com</h1>
-    <p>
+    <p class="meta">
       Praktyczne notatki o AI, infrastrukturze i procesach — tworzone z rozmów,
       redagowane i publikowane przez workflow GitHub PR.
     </p>
@@ -21,8 +21,8 @@ const rest = posts.slice(1);
   {featured ? (
     <section>
       <h2>Wyróżniony wpis</h2>
-      <article style="border:1px solid #2a2a2a;padding:1rem;border-radius:12px;margin-bottom:1.5rem;">
-        <p style="margin:.2rem 0 .6rem;opacity:.8;">{featured.data.date.toISOString().slice(0,10)} · {featured.data.lang.toUpperCase()}</p>
+      <article class="card" style="margin-bottom:1.5rem;">
+        <p class="meta">{featured.data.date.toISOString().slice(0,10)} · {featured.data.lang.toUpperCase()}</p>
         <h3 style="margin:.2rem 0 .7rem;">
           <a href={`posts/${featured.slug}/`}>{featured.data.title}</a>
         </h3>
@@ -31,7 +31,7 @@ const rest = posts.slice(1);
       </article>
     </section>
   ) : (
-    <section>
+    <section class="card">
       <h2>Wpisy pojawią się wkrótce</h2>
       <p>Gdy opublikujesz pierwszy wpis ze statusem <code>ready</code>, pojawi się tutaj automatycznie.</p>
     </section>
@@ -42,9 +42,9 @@ const rest = posts.slice(1);
       <h2>Ostatnie wpisy</h2>
       <ul style="list-style:none;padding:0;display:grid;gap:.8rem;">
         {rest.map((post) => (
-          <li style="border:1px solid #222;padding:.8rem;border-radius:10px;">
+          <li class="card">
             <a href={`posts/${post.slug}/`}><strong>{post.data.title}</strong></a>
-            <div style="font-size:.92rem;opacity:.8;">{post.data.date.toISOString().slice(0,10)} · {post.data.lang.toUpperCase()}</div>
+            <div class="meta">{post.data.date.toISOString().slice(0,10)} · {post.data.lang.toUpperCase()}</div>
           </li>
         ))}
       </ul>
