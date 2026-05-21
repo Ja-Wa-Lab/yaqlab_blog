@@ -1,6 +1,5 @@
 ---
 title: "[PLACEHOLDER] Title"
-slug: "template-post"
 date: 2026-05-21
 status: draft
 lang: pl
@@ -10,7 +9,7 @@ hero_image: "/images/template-hero.jpg"
 hero_alt: "[PLACEHOLDER] Opis alternatywny obrazka hero"
 hero_h1: "[PLACEHOLDER] Kontrastujący H1 na hero"
 seo_title: "[PLACEHOLDER] SEO title"
-seo_description: "[PLACEHOLDER] SEO description ok. 140-160 znaków"
+seo_description: "[PLACEHOLDER] SEO description z min. 50 znakami i jasną obietnicą wartości dla czytelnika"
 source_type: voice_chat
 source_ref: "chat-transcript-YYYYMMDD"
 ---

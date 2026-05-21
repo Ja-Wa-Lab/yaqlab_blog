@@ -11,7 +11,7 @@ const posts = (await getCollection('posts'))
   <p>Wpisy tworzone z rozmów i publikowane workflowem GitHub PR.</p>
   <ul>
     {posts.map((post) => (
-      <li><a href={`/posts/${post.data.slug}/`}>{post.data.title}</a> — {post.data.date.toISOString().slice(0,10)}</li>
+      <li><a href={`/posts/${post.slug}/`}>{post.data.title}</a> — {post.data.date.toISOString().slice(0,10)}</li>
     ))}
   </ul>
 </BaseLayout>
