@@ -1,5 +1,6 @@
 import { defineConfig } from 'astro/config';
 
 export default defineConfig({
-  site: 'https://yaqlab.com'
+  site: 'https://ja-wa-lab.github.io',
+  base: '/yaqlab_blog'
 });
