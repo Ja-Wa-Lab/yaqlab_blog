@@ -10,11 +10,26 @@ const featured = posts[0];
 const rest = posts.slice(1);
 ---
 <BaseLayout title="yaqlab.com" description="Praktyczny blog o AI, infrastrukturze i procesach">
-  <section style="margin-bottom:1.5rem;">
-    <h1>yaqlab.com</h1>
-    <p class="meta">
-      Praktyczne notatki o AI, infrastrukturze i procesach — tworzone z rozmów,
-      redagowane i publikowane przez workflow GitHub PR.
+  <section
+    style="position:relative;width:100vw;margin-left:calc(50% - 50vw);margin-right:calc(50% - 50vw);margin-top:calc(clamp(1rem, 3vw, 2rem) * -1);overflow:hidden;"
+  >
+    <img
+      src="https://images.unsplash.com/photo-1552832230-c0197dd311b5?auto=format&fit=crop&w=2200&q=80"
+      alt="Panteon w Rzymie widziany od frontu"
+      loading="eager"
+      style="display:block;width:100%;height:min(58vh,560px);object-fit:cover;"
+    />
+    <h1
+      style="position:absolute;left:clamp(1rem,4vw,3rem);bottom:clamp(1rem,4vw,2.4rem);margin:0;padding:.45rem .9rem;border-radius:12px;background:rgba(0,0,0,.62);color:#fff;font-size:clamp(1.7rem,5vw,3rem);"
+    >
+      Notes
+    </h1>
+  </section>
+
+  <section style="margin:1.2rem 0 1.5rem;">
+    <p class="meta" style="font-size:1.05rem;max-width:70ch;">
+      Miejsce, w którym zbieram przemyślenia o nowych technologiach, AI, infrastrukturze i procesach.
+      Przekładam techniczny świat na prosty, biznesowy język — tak, żeby decyzje były szybsze, a wdrożenia spokojniejsze.
     </p>
   </section>
 
