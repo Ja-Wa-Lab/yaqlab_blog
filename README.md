@@ -36,3 +36,4 @@ Nginx starter config is available at:
 ## Domain (legacy Pages)
 
 Set custom domain in GitHub Pages settings to `yaqlab.com` and configure DNS records accordingly.
+
