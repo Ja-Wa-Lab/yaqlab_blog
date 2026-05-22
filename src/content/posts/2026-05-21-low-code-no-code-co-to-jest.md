@@ -5,8 +5,8 @@ status: ready
 lang: pl
 tags: ["low-code", "no-code", "automation", "productivity", "digital-transformation"]
 excerpt: "Low-code i no-code pozwalają tworzyć aplikacje i automatyzacje szybciej, często bez pełnego zespołu developerskiego. Klucz to wiedzieć, kiedy to dobry wybór, a kiedy nie."
-hero_image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=1600&q=80"
-hero_alt: "Interfejs projektowania aplikacji metodą drag and drop na ekranie laptopa"
+hero_image: "https://images.unsplash.com/photo-1465101162946-4377e57745c3?auto=format&fit=crop&w=1600&q=80"
+hero_alt: "Rozgwieżdżone niebo nad górami symbolizujące szybkie budowanie rozwiązań low-code i no-code"
 hero_h1: "Low-code / no-code w praktyce"
 seo_title: "Low-code i no-code: kiedy warto je wdrożyć? | yaqlab"
 seo_description: "Wyjaśniamy czym są platformy low-code i no-code, jakie mają przewagi biznesowe, ograniczenia techniczne oraz jak bezpiecznie wdrożyć je w organizacji."

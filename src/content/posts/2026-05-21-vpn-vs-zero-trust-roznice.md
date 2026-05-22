@@ -5,9 +5,9 @@ status: ready
 lang: pl
 tags: ["security", "vpn", "zero-trust", "network", "it-management"]
 excerpt: "VPN i Zero Trust rozwiązują różne problemy dostępu. VPN łączy sieci, a Zero Trust ogranicza zaufanie i daje dostęp tylko do konkretnych zasobów według kontekstu."
-hero_image: "https://images.unsplash.com/photo-1563986768494-4dee2763ff3f?auto=format&fit=crop&w=1600&q=80"
-hero_alt: "Cyfrowa kłódka i strumienie danych symbolizujące nowoczesne podejście do bezpieczeństwa dostępu"
-hero_h1: "VPN czy Zero Trust?"
+hero_image: "https://images.unsplash.com/photo-1516116216624-53e697fedbea?auto=format&fit=crop&w=1600&q=80"
+hero_alt: "Kolorowe fraktale symbolizujące złożoność nowoczesnego bezpieczeństwa sieci"
+hero_h1: "VPN vs Zero Trust"
 seo_title: "VPN a Zero Trust: kluczowe różnice i wybór podejścia | yaqlab"
 seo_description: "Praktyczne porównanie VPN i Zero Trust: model zaufania, zakres dostępu, bezpieczeństwo oraz scenariusze, w których każde podejście sprawdza się najlepiej."
 source_type: voice_chat

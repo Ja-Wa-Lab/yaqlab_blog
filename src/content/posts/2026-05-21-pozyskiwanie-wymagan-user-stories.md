@@ -5,8 +5,8 @@ status: ready
 lang: pl
 tags: ["requirements", "product", "user-stories", "analysis", "delivery"]
 excerpt: "Dobre wymagania zaczynają się od zrozumienia problemu użytkownika. Ten wpis pokazuje, jak łączyć discovery, user stories i kryteria akceptacji, aby dowozić wartość bez chaosu."
-hero_image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1600&q=80"
-hero_alt: "Zespół analizujący wymagania przy tablicy z notatkami i mapą procesu"
+hero_image: "https://images.unsplash.com/photo-1552832230-c0197dd311b5?auto=format&fit=crop&w=1600&q=80"
+hero_alt: "Grecka świątynia jako metafora solidnych fundamentów wymagań i user stories"
 hero_h1: "Wymagania bez chaosu"
 seo_title: "Pozyskiwanie wymagań i user stories: praktyczny przewodnik | yaqlab"
 seo_description: "Jak skutecznie zbierać wymagania i pisać user stories, które prowadzą do trafnych decyzji produktowych, mniejszej liczby poprawek i szybszego dostarczania wartości biznesowej."

@@ -5,8 +5,8 @@ status: ready
 lang: pl
 tags: ["product", "ux", "empathy", "leadership", "it"]
 excerpt: "Skuteczne systemy nie zaczynają się od technologii, tylko od empatii. Ten wpis pokazuje, jak zrozumienie bólu użytkownika przekłada się na lepsze decyzje produktowe i biznesowe."
-hero_image: "https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=1600&q=80"
-hero_alt: "Górska ścieżka o wschodzie słońca jako metafora wejścia w perspektywę klienta"
+hero_image: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1600&q=80"
+hero_alt: "Pasmo górskie o świcie symbolizujące empatyczne projektowanie rozwiązań"
 hero_h1: "Empatia to przewaga produktowa"
 seo_title: "Projektujesz rozwiązanie czy tylko produkt? Empatia w IT | yaqlab"
 seo_description: "Empatia w IT to konkretna przewaga biznesowa: pomaga odkrywać prawdziwe problemy klientów i budować rozwiązania, które realnie zmieniają ich codzienność."

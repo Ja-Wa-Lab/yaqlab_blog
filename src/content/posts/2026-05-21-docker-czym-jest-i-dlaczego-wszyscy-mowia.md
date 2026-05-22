@@ -5,8 +5,8 @@ status: ready
 lang: pl
 tags: ["docker", "devops", "infrastructure", "backend", "it-basics"]
 excerpt: "Docker pozwala zapakować aplikację razem z jej zależnościami do jednego kontenera, dzięki czemu działa tak samo na laptopie, serwerze i w chmurze."
-hero_image: "https://images.unsplash.com/photo-1518773553398-650c184e0bb3?auto=format&fit=crop&w=1600&q=80"
-hero_alt: "Nowoczesne kontenery transportowe ustawione w porcie jako metafora kontenerów Dockera"
+hero_image: "https://images.unsplash.com/photo-1568430462989-44163eb1752f?auto=format&fit=crop&w=1600&q=80"
+hero_alt: "Humbak wynurzający się z oceanu jako metafora mocy i lekkości Dockera"
 hero_h1: "Docker bez tajemnic"
 seo_title: "Docker: co to jest i dlaczego warto go znać? | yaqlab"
 seo_description: 'Praktyczne wyjaśnienie Dockera dla początkujących: czym są kontenery, dlaczego rozwiązują problem "u mnie działa" i jak pomagają szybciej wdrażać aplikacje.'
