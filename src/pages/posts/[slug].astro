@@ -24,7 +24,13 @@ const relatedPosts = (await getCollection('posts'))
   .slice(0, 3)
   .map((item) => item.post);
 ---
-<BaseLayout title={post.data.seo_title} description={post.data.seo_description}>
+<BaseLayout
+  title={post.data.seo_title}
+  description={post.data.seo_description}
+  canonical={`/posts/${post.slug}/`}
+  ogImage={post.data.hero_image}
+  ogType="article"
+>
   <p style="margin:0 0 1rem;">
     <a href="../../" aria-label="Wróć do strony głównej">← Wróć do landingu</a>
   </p>

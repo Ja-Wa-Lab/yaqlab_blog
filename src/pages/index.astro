@@ -9,7 +9,7 @@ const posts = (await getCollection('posts'))
 const featuredPosts = posts.slice(0, 3);
 const rest = posts.slice(3);
 ---
-<BaseLayout title="yaqlab.com" description="Praktyczny blog o AI, infrastrukturze i procesach">
+<BaseLayout title="yaqlab.com" description="Praktyczny blog o AI, infrastrukturze i procesach" canonical="/">
   <section
     style="position:relative;width:100vw;margin-left:calc(50% - 50vw);margin-right:calc(50% - 50vw);margin-top:calc(clamp(1rem, 3vw, 2rem) * -1);overflow:hidden;"
   >
@@ -31,6 +31,7 @@ const rest = posts.slice(3);
       Miejsce, w którym zbieram przemyślenia o nowych technologiach, AI, infrastrukturze i procesach.
       Przekładam techniczny świat na prosty, biznesowy język — tak, żeby decyzje były szybsze, a wdrożenia spokojniejsze.
     </p>
+    <p style="margin:.4rem 0 0;"><a href="start-here/">Start here →</a></p>
   </section>
 
   {featuredPosts.length > 0 ? (

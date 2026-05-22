@@ -1,6 +1,14 @@
 ---
-const { title = 'yaqlab blog', description = 'AI, infra, procesy' } = Astro.props;
+const {
+  title = 'yaqlab blog',
+  description = 'AI, infra, procesy',
+  canonical,
+  ogImage,
+  ogType = 'website'
+} = Astro.props;
 const buildStamp = new Date().toISOString().slice(0, 16).replace('T', ' ');
+const resolvedCanonical = canonical ? new URL(canonical, Astro.site).toString() : undefined;
+const resolvedOgImage = ogImage ? new URL(ogImage, Astro.site).toString() : undefined;
 ---
 <!doctype html>
 <html lang="pl">
@@ -9,6 +17,16 @@ const buildStamp = new Date().toISOString().slice(0, 16).replace('T', ' ');
     <meta name="viewport" content="width=device-width" />
     <title>{title}</title>
     <meta name="description" content={description} />
+    {resolvedCanonical && <link rel="canonical" href={resolvedCanonical} />}
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content={ogType} />
+    {resolvedCanonical && <meta property="og:url" content={resolvedCanonical} />}
+    {resolvedOgImage && <meta property="og:image" content={resolvedOgImage} />}
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    {resolvedOgImage && <meta name="twitter:image" content={resolvedOgImage} />}
     <style>
       :root {
         --bg: #ffffff;
