@@ -23,6 +23,9 @@ const { Content } = await render(post);
       <h1>{post.data.hero_h1}</h1>
     </div>
     <p><strong>{post.data.title}</strong> · {post.data.lang.toUpperCase()} · {post.data.date.toISOString().slice(0,10)}</p>
+    <div class="tags">
+      {post.data.tags.map((tag) => <span class="tag">{tag}</span>)}
+    </div>
     <Content />
   </article>
 </BaseLayout>

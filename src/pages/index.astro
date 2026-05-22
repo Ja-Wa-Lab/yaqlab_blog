@@ -6,16 +6,16 @@ const posts = (await getCollection('posts'))
   .filter((p) => p.data.status === 'ready')
   .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
 
-const featured = posts[0];
-const rest = posts.slice(1);
+const featuredPosts = posts.slice(0, 3);
+const rest = posts.slice(3);
 ---
 <BaseLayout title="yaqlab.com" description="Praktyczny blog o AI, infrastrukturze i procesach">
   <section
     style="position:relative;width:100vw;margin-left:calc(50% - 50vw);margin-right:calc(50% - 50vw);margin-top:calc(clamp(1rem, 3vw, 2rem) * -1);overflow:hidden;"
   >
     <img
-      src="https://images.unsplash.com/photo-1552832230-c0197dd311b5?auto=format&fit=crop&w=2200&q=80"
-      alt="Panteon w Rzymie widziany od frontu"
+      src="https://images.unsplash.com/photo-1549893074-4bc0f5a9b6b1?auto=format&fit=crop&w=2200&q=80"
+      alt="Rzeźba Michała Archanioła na tle nieba"
       loading="eager"
       style="display:block;width:100%;height:min(58vh,560px);object-fit:cover;"
     />
@@ -33,25 +33,39 @@ const rest = posts.slice(1);
     </p>
   </section>
 
-  {featured ? (
+  {featuredPosts.length > 0 ? (
     <section>
-      <h2>Wyróżniony wpis</h2>
-      <article class="card" style="margin-bottom:1.5rem;">
-        <a href={`posts/${featured.slug}/`} style="display:block;border-radius:14px;overflow:hidden;margin-bottom:.8rem;">
-          <img
-            src={featured.data.hero_image}
-            alt={featured.data.hero_alt}
-            loading="lazy"
-            style="display:block;width:100%;height:clamp(170px,36vw,340px);object-fit:cover;"
-          />
-        </a>
-        <p class="meta">{featured.data.date.toISOString().slice(0,10)} · {featured.data.lang.toUpperCase()}</p>
-        <h3 style="margin:.2rem 0 .7rem;">
-          <a href={`posts/${featured.slug}/`}>{featured.data.title}</a>
-        </h3>
-        <p>{featured.data.excerpt}</p>
-        <p><a href={`posts/${featured.slug}/`}>Czytaj wpis →</a></p>
-      </article>
+      <h2>Wyróżnione wpisy</h2>
+      <div style="display:grid;grid-template-columns:1.3fr 1fr;gap:1rem;align-items:stretch;margin-bottom:1.5rem;">
+        {featuredPosts[0] && (
+          <article class="card" style="display:flex;flex-direction:column;">
+            <a href={`posts/${featuredPosts[0].slug}/`} style="display:block;border-radius:14px;overflow:hidden;margin-bottom:.8rem;">
+              <img src={featuredPosts[0].data.hero_image} alt={featuredPosts[0].data.hero_alt} loading="lazy" style="display:block;width:100%;height:clamp(220px,36vw,340px);object-fit:cover;" />
+            </a>
+            <p class="meta">{featuredPosts[0].data.date.toISOString().slice(0,10)} · {featuredPosts[0].data.lang.toUpperCase()}</p>
+            <h3 style="margin:.2rem 0 .7rem;"><a href={`posts/${featuredPosts[0].slug}/`}>{featuredPosts[0].data.title}</a></h3>
+            <div class="tags">
+              {featuredPosts[0].data.tags.slice(0, 4).map((tag) => <span class="tag">{tag}</span>)}
+            </div>
+            <p>{featuredPosts[0].data.excerpt}</p>
+            <p><a href={`posts/${featuredPosts[0].slug}/`}>Czytaj wpis →</a></p>
+          </article>
+        )}
+        <div style="display:grid;gap:1rem;">
+          {featuredPosts.slice(1).map((post) => (
+            <article class="card">
+              <a href={`posts/${post.slug}/`} style="display:block;border-radius:12px;overflow:hidden;margin-bottom:.7rem;">
+                <img src={post.data.hero_image} alt={post.data.hero_alt} loading="lazy" style="display:block;width:100%;height:140px;object-fit:cover;" />
+              </a>
+              <p class="meta" style="margin-bottom:.4rem;">{post.data.date.toISOString().slice(0,10)} · {post.data.lang.toUpperCase()}</p>
+              <h3 style="margin:.1rem 0 .5rem;"><a href={`posts/${post.slug}/`}>{post.data.title}</a></h3>
+              <div class="tags">
+                {post.data.tags.slice(0, 3).map((tag) => <span class="tag">{tag}</span>)}
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
     </section>
   ) : (
     <section class="card">
@@ -76,11 +90,22 @@ const rest = posts.slice(1);
             </a>
             <div>
               <a href={`posts/${post.slug}/`}><strong>{post.data.title}</strong></a>
-            <div class="meta">{post.data.date.toISOString().slice(0,10)} · {post.data.lang.toUpperCase()}</div>
+              <div class="meta">{post.data.date.toISOString().slice(0,10)} · {post.data.lang.toUpperCase()}</div>
+              <div class="tags">
+                {post.data.tags.slice(0, 3).map((tag) => <span class="tag">{tag}</span>)}
+              </div>
             </div>
           </li>
         ))}
       </ul>
     </section>
   )}
+
+  <style>
+    @media (max-width: 900px) {
+      section div[style*="grid-template-columns:1.3fr 1fr"] {
+        grid-template-columns: 1fr !important;
+      }
+    }
+  </style>
 </BaseLayout>

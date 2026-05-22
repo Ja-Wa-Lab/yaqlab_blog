@@ -102,6 +102,31 @@ const { title = 'yaqlab blog', description = 'AI, infra, procesy' } = Astro.prop
         font-size: 0.95rem;
       }
 
+      :global(.tags) {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.4rem;
+        margin: 0.4rem 0 0.9rem;
+      }
+
+      :global(.tag) {
+        border: 1px solid var(--border);
+        background: #f8f9fc;
+        color: #3b4558;
+        border-radius: 999px;
+        padding: 0.12rem 0.6rem;
+        font-size: 0.8rem;
+        line-height: 1.6;
+      }
+
+      footer {
+        margin-top: 2rem;
+        padding-top: 1rem;
+        border-top: 1px solid var(--border);
+        color: var(--muted);
+        font-size: 0.92rem;
+      }
+
       @keyframes fadeUp {
         from { opacity: 0; transform: translateY(10px); }
         to { opacity: 1; transform: translateY(0); }
@@ -117,6 +142,11 @@ const { title = 'yaqlab blog', description = 'AI, infra, procesy' } = Astro.prop
     </style>
   </head>
   <body>
-    <main class="wrap"><slot /></main>
+    <main class="wrap">
+      <slot />
+      <footer>
+        <p>© {new Date().getFullYear()} YAQ Lab Notes · AI, infrastruktura, procesy i bezpieczeństwo prostym językiem.</p>
+      </footer>
+    </main>
   </body>
 </html>
