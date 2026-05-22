@@ -1,0 +1,111 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const posts = (await getCollection('posts'))
+  .filter((p) => p.data.status === 'ready')
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+
+const featuredPosts = posts.slice(0, 3);
+const rest = posts.slice(3);
+---
+<BaseLayout title="yaqlab.com" description="Praktyczny blog o AI, infrastrukturze i procesach">
+  <section
+    style="position:relative;width:100vw;margin-left:calc(50% - 50vw);margin-right:calc(50% - 50vw);margin-top:calc(clamp(1rem, 3vw, 2rem) * -1);overflow:hidden;"
+  >
+    <img
+      src="https://images.unsplash.com/photo-1549893074-4bc0f5a9b6b1?auto=format&fit=crop&w=2200&q=80"
+      alt="Rzeźba Michała Archanioła na tle nieba"
+      loading="eager"
+      style="display:block;width:100%;height:min(58vh,560px);object-fit:cover;"
+    />
+    <h1
+      style="position:absolute;left:clamp(1rem,4vw,3rem);bottom:clamp(1rem,4vw,2.4rem);margin:0;padding:.45rem .9rem;border-radius:12px;background:rgba(0,0,0,.62);color:#fff;font-size:clamp(1.7rem,5vw,3rem);"
+    >
+      Notes
+    </h1>
+  </section>
+
+  <section style="margin:1.2rem 0 1.5rem;">
+    <p class="meta" style="font-size:1.05rem;max-width:70ch;">
+      Miejsce, w którym zbieram przemyślenia o nowych technologiach, AI, infrastrukturze i procesach.
+      Przekładam techniczny świat na prosty, biznesowy język — tak, żeby decyzje były szybsze, a wdrożenia spokojniejsze.
+    </p>
+  </section>
+
+  {featuredPosts.length > 0 ? (
+    <section>
+      <h2>Wyróżnione wpisy</h2>
+      <div style="display:grid;grid-template-columns:1.3fr 1fr;gap:1rem;align-items:stretch;margin-bottom:1.5rem;">
+        {featuredPosts[0] && (
+          <article class="card" style="display:flex;flex-direction:column;">
+            <a href={`posts/${featuredPosts[0].slug}/`} style="display:block;border-radius:14px;overflow:hidden;margin-bottom:.8rem;">
+              <img src={featuredPosts[0].data.hero_image} alt={featuredPosts[0].data.hero_alt} loading="lazy" style="display:block;width:100%;height:clamp(220px,36vw,340px);object-fit:cover;" />
+            </a>
+            <p class="meta">{featuredPosts[0].data.date.toISOString().slice(0,10)} · {featuredPosts[0].data.lang.toUpperCase()}</p>
+            <h3 style="margin:.2rem 0 .7rem;"><a href={`posts/${featuredPosts[0].slug}/`}>{featuredPosts[0].data.title}</a></h3>
+            <div class="tags">
+              {featuredPosts[0].data.tags.slice(0, 4).map((tag) => <span class="tag">{tag}</span>)}
+            </div>
+            <p>{featuredPosts[0].data.excerpt}</p>
+            <p><a href={`posts/${featuredPosts[0].slug}/`}>Czytaj wpis →</a></p>
+          </article>
+        )}
+        <div style="display:grid;gap:1rem;">
+          {featuredPosts.slice(1).map((post) => (
+            <article class="card">
+              <a href={`posts/${post.slug}/`} style="display:block;border-radius:12px;overflow:hidden;margin-bottom:.7rem;">
+                <img src={post.data.hero_image} alt={post.data.hero_alt} loading="lazy" style="display:block;width:100%;height:140px;object-fit:cover;" />
+              </a>
+              <p class="meta" style="margin-bottom:.4rem;">{post.data.date.toISOString().slice(0,10)} · {post.data.lang.toUpperCase()}</p>
+              <h3 style="margin:.1rem 0 .5rem;"><a href={`posts/${post.slug}/`}>{post.data.title}</a></h3>
+              <div class="tags">
+                {post.data.tags.slice(0, 3).map((tag) => <span class="tag">{tag}</span>)}
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  ) : (
+    <section class="card">
+      <h2>Wpisy pojawią się wkrótce</h2>
+      <p>Gdy opublikujesz pierwszy wpis ze statusem <code>ready</code>, pojawi się tutaj automatycznie.</p>
+    </section>
+  )}
+
+  {rest.length > 0 && (
+    <section>
+      <h2>Ostatnie wpisy</h2>
+      <ul style="list-style:none;padding:0;display:grid;gap:.8rem;">
+        {rest.map((post) => (
+          <li class="card" style="display:grid;grid-template-columns:minmax(110px,160px) 1fr;gap:.8rem;align-items:center;">
+            <a href={`posts/${post.slug}/`} style="display:block;border-radius:12px;overflow:hidden;">
+              <img
+                src={post.data.hero_image}
+                alt={post.data.hero_alt}
+                loading="lazy"
+                style="display:block;width:100%;height:96px;object-fit:cover;"
+              />
+            </a>
+            <div>
+              <a href={`posts/${post.slug}/`}><strong>{post.data.title}</strong></a>
+              <div class="meta">{post.data.date.toISOString().slice(0,10)} · {post.data.lang.toUpperCase()}</div>
+              <div class="tags">
+                {post.data.tags.slice(0, 3).map((tag) => <span class="tag">{tag}</span>)}
+              </div>
+            </div>
+          </li>
+        ))}
+      </ul>
+    </section>
+  )}
+
+  <style>
+    @media (max-width: 900px) {
+      section div[style*="grid-template-columns:1.3fr 1fr"] {
+        grid-template-columns: 1fr !important;
+      }
+    }
+  </style>
+</BaseLayout>
