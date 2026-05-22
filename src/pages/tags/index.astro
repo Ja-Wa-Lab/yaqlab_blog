@@ -1,0 +1,20 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const posts = (await getCollection('posts')).filter((post) => post.data.status === 'ready');
+const tagCount = posts.reduce((acc, post) => {
+  for (const tag of post.data.tags) acc[tag] = (acc[tag] ?? 0) + 1;
+  return acc;
+}, {} as Record<string, number>);
+const tags = Object.entries(tagCount).sort((a, b) => b[1] - a[1]);
+---
+<BaseLayout title="Tagi | yaqlab" description="Wszystkie tematy wpisów na blogu YAQ Lab">
+  <h1>Tagi</h1>
+  <p class="meta">Przeglądaj wpisy po tematach.</p>
+  <div style="display:flex;flex-wrap:wrap;gap:.6rem;">
+    {tags.map(([tag, count]) => (
+      <a class="tag" href={`./${tag.toLowerCase()}/`}>{tag} ({count})</a>
+    ))}
+  </div>
+</BaseLayout>

@@ -11,7 +11,8 @@
   },
   "dependencies": {
     "astro": "^5.10.0",
-    "zod": "^3.25.0"
+    "zod": "^3.25.0",
+    "@astrojs/rss": "^4.0.11"
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.4",
