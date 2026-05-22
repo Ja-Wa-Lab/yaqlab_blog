@@ -1,0 +1,159 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const posts = (await getCollection('posts'))
+  .filter((p) => p.data.status === 'ready')
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+
+const featuredPosts = posts.slice(0, 3);
+const rest = posts.slice(3);
+---
+<BaseLayout title="yaqlab.com" description="Praktyczny blog o AI, infrastrukturze i procesach" canonical="/">
+  <section
+    style="position:relative;width:100vw;margin-left:calc(50% - 50vw);margin-right:calc(50% - 50vw);margin-top:calc(clamp(1rem, 3vw, 2rem) * -1);overflow:hidden;"
+  >
+    <img
+      src="https://images.unsplash.com/photo-1603565816030-6b389eeb23cb?auto=format&fit=crop&w=2200&q=80"
+      alt="Grecka świątynia w klasycznym stylu na tle nieba"
+      loading="eager"
+      style="display:block;width:100%;height:min(58vh,560px);object-fit:cover;"
+    />
+    <h1
+      style="position:absolute;left:clamp(1rem,4vw,3rem);bottom:clamp(1rem,4vw,2.4rem);margin:0;padding:.45rem .9rem;border-radius:12px;background:rgba(0,0,0,.62);color:#fff;font-size:clamp(1.7rem,5vw,3rem);"
+    >
+      Notes
+    </h1>
+  </section>
+
+  <section style="margin:1.2rem 0 1.5rem;">
+    <p class="meta" style="font-size:1.05rem;max-width:70ch;">
+      Miejsce, w którym zbieram przemyślenia o nowych technologiach, AI, infrastrukturze i procesach.
+      Przekładam techniczny świat na prosty, biznesowy język — tak, żeby decyzje były szybsze, a wdrożenia spokojniejsze.
+    </p>
+    <div class="quick-links" style="margin:.75rem 0 0;display:flex;flex-wrap:wrap;gap:.55rem;">
+      <a class="tag" href="tags/">Przeglądaj tagi</a>
+      <a class="tag" href="rss.xml">RSS</a>
+      <a class="tag" href="/yaqlab_blog/tags/security/">Security</a>
+      <a class="tag" href="/yaqlab_blog/tags/ai/">AI / Ops</a>
+      <a class="tag" href="/yaqlab_blog/tags/devops/">DevOps</a>
+    </div>
+  </section>
+
+  <section class="card" style="margin:0 0 1.25rem;">
+    <h2 style="margin-bottom:.5rem;">Start here</h2>
+    <p style="margin-top:0;">Jeśli jesteś tu pierwszy raz, zacznij od tych obszarów. To przekrojowy zestaw tematów: AI, procesy, infrastruktura i bezpieczeństwo — konkretnie i wdrożeniowo.</p>
+    <ul style="margin:.5rem 0 0 1rem;">
+      <li><strong>AI / Ops</strong> — jak zamieniać rozmowy i pomysły w działający proces.</li>
+      <li><strong>Infra / DevOps</strong> — Docker, VPS, praktyka wdrożeń.</li>
+      <li><strong>Security</strong> — Zero Trust, VPN i decyzje architektoniczne.</li>
+      <li><strong>Product / Process</strong> — wymagania, user stories, empatia i delivery.</li>
+    </ul>
+  </section>
+
+  {featuredPosts.length > 0 ? (
+    <section>
+      <h2>Wyróżnione wpisy</h2>
+      <div style="display:grid;grid-template-columns:1.3fr 1fr;gap:1rem;align-items:stretch;margin-bottom:1.5rem;">
+        {featuredPosts[0] && (
+          <article class="card" style="display:flex;flex-direction:column;">
+            <a href={`posts/${featuredPosts[0].slug}/`} style="display:block;border-radius:14px;overflow:hidden;margin-bottom:.8rem;">
+              <img src={featuredPosts[0].data.hero_image} alt={featuredPosts[0].data.hero_alt} loading="lazy" style="display:block;width:100%;height:clamp(220px,36vw,340px);object-fit:cover;" />
+            </a>
+            <p class="meta">{featuredPosts[0].data.date.toISOString().slice(0,10)} · {featuredPosts[0].data.lang.toUpperCase()}</p>
+            <h3 style="margin:.2rem 0 .7rem;"><a href={`posts/${featuredPosts[0].slug}/`}>{featuredPosts[0].data.title}</a></h3>
+            <div class="tags">
+              {featuredPosts[0].data.tags.slice(0, 4).map((tag) => <a class="tag" href={`tags/${tag.toLowerCase()}/`}>{tag}</a>)}
+            </div>
+            <p>{featuredPosts[0].data.excerpt}</p>
+            <p><a href={`posts/${featuredPosts[0].slug}/`}>Czytaj wpis →</a></p>
+          </article>
+        )}
+        <div style="display:grid;gap:1rem;">
+          {featuredPosts.slice(1).map((post) => (
+            <article class="card">
+              <a href={`posts/${post.slug}/`} style="display:block;border-radius:12px;overflow:hidden;margin-bottom:.7rem;">
+                <img src={post.data.hero_image} alt={post.data.hero_alt} loading="lazy" style="display:block;width:100%;height:140px;object-fit:cover;" />
+              </a>
+              <p class="meta" style="margin-bottom:.4rem;">{post.data.date.toISOString().slice(0,10)} · {post.data.lang.toUpperCase()}</p>
+              <h3 style="margin:.1rem 0 .5rem;"><a href={`posts/${post.slug}/`}>{post.data.title}</a></h3>
+              <div class="tags">
+                {post.data.tags.slice(0, 3).map((tag) => <a class="tag" href={`tags/${tag.toLowerCase()}/`}>{tag}</a>)}
+              </div>
+              <p style="margin:.2rem 0 0;">{post.data.excerpt}</p>
+              <p style="margin:.45rem 0 0;"><a href={`posts/${post.slug}/`}>Czytaj wpis →</a></p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  ) : (
+    <section class="card">
+      <h2>Wpisy pojawią się wkrótce</h2>
+      <p>Gdy opublikujesz pierwszy wpis ze statusem <code>ready</code>, pojawi się tutaj automatycznie.</p>
+    </section>
+  )}
+
+  {rest.length > 0 && (
+    <section>
+      <h2>Ostatnie wpisy</h2>
+      <ul class="recent-list" style="list-style:none;padding:0;display:grid;gap:.8rem;">
+        {rest.map((post) => (
+          <li class="card recent-card" style="display:grid;grid-template-columns:1fr;gap:.75rem;align-items:start;">
+            <a href={`posts/${post.slug}/`} class="recent-thumb" style="display:block;border-radius:12px;overflow:hidden;">
+              <img
+                src={post.data.hero_image}
+                alt={post.data.hero_alt}
+                loading="lazy"
+                style="display:block;width:100%;height:170px;object-fit:cover;object-position:center;"
+              />
+            </a>
+            <div class="recent-content">
+              <a href={`posts/${post.slug}/`}><strong>{post.data.title}</strong></a>
+              <div class="meta">{post.data.date.toISOString().slice(0,10)} · {post.data.lang.toUpperCase()}</div>
+              <div class="tags">
+                {post.data.tags.slice(0, 3).map((tag) => <a class="tag" href={`tags/${tag.toLowerCase()}/`}>{tag}</a>)}
+              </div>
+              <p style="margin:.3rem 0 0;">{post.data.excerpt}</p>
+              <p style="margin:.45rem 0 0;"><a href={`posts/${post.slug}/`}>Czytaj wpis →</a></p>
+            </div>
+          </li>
+        ))}
+      </ul>
+    </section>
+  )}
+
+  <style>
+    .recent-list { gap: 1rem; }
+
+    .recent-card { grid-template-areas: "thumb" "content"; }
+
+    .recent-thumb {
+      grid-area: thumb;
+      align-self: start;
+    }
+
+    .recent-content {
+      grid-area: content;
+    }
+
+    .recent-thumb img {
+      transform: scale(1.01);
+    }
+
+    @media (max-width: 900px) {
+      section div[style*="grid-template-columns:1.3fr 1fr"] {
+        grid-template-columns: 1fr !important;
+      }
+    }
+
+    @media (max-width: 700px) {
+      .recent-card { gap: .75rem; }
+
+      .recent-thumb img {
+        height: 170px !important;
+        object-position: center 38%;
+      }
+    }
+  </style>
+</BaseLayout>
