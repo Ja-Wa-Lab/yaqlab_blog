@@ -1,0 +1,122 @@
+---
+const { title = 'yaqlab blog', description = 'AI, infra, procesy' } = Astro.props;
+---
+<!doctype html>
+<html lang="pl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <style>
+      :root {
+        --bg: #ffffff;
+        --surface: #ffffff;
+        --surface-soft: #f7f7f8;
+        --text: #1a1a1a;
+        --muted: #6b7280;
+        --border: #e8e8eb;
+        --link: #1f5eff;
+      }
+
+      * { box-sizing: border-box; }
+
+      body {
+        font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, system-ui, sans-serif;
+        margin: 0;
+        background: var(--bg);
+        color: var(--text);
+        line-height: 1.7;
+        overflow-x: hidden;
+      }
+
+      .wrap {
+        max-width: 920px;
+        margin: 0 auto;
+        padding: clamp(1rem, 3vw, 2rem) 1rem 4rem;
+      }
+
+      h1, h2, h3 {
+        line-height: 1.25;
+        letter-spacing: -0.01em;
+        margin-top: 0;
+      }
+
+      p { margin: 0.6rem 0 1rem; }
+
+      a {
+        color: var(--link);
+        text-decoration: none;
+      }
+
+      a:hover { text-decoration: underline; }
+
+      :global(.card) {
+        border: 1px solid var(--border);
+        background: var(--surface);
+        border-radius: 16px;
+        padding: 1rem;
+        transition: transform .28s ease, box-shadow .28s ease, border-color .28s ease;
+        animation: fadeUp .55s ease both;
+      }
+
+      :global(.card:hover) {
+        transform: translateY(-4px);
+        box-shadow: 0 14px 34px rgba(10, 18, 30, 0.08);
+        border-color: #dfe4ee;
+      }
+
+      :global(.hero) {
+        position: relative;
+        margin: 1.2rem 0 2rem;
+        border-radius: 20px;
+        overflow: hidden;
+        width: 100%;
+        max-height: min(72vh, 720px);
+        background: var(--surface-soft);
+      }
+
+      :global(.hero img) {
+        width: 100%;
+        height: min(72vh, 720px);
+        object-fit: cover;
+        display: block;
+      }
+
+      :global(.hero h1) {
+        position: absolute;
+        left: clamp(0.8rem, 2vw, 1.2rem);
+        bottom: clamp(0.8rem, 2vw, 1.2rem);
+        margin: 0;
+        padding: 0.45rem 0.85rem;
+        border-radius: 12px;
+        background: rgba(0, 0, 0, 0.66);
+        color: #fff;
+        font-size: clamp(1.15rem, 2.4vw, 1.8rem);
+        max-width: min(90%, 700px);
+        animation: fadeUp .55s ease .12s both;
+      }
+
+      :global(.meta) {
+        color: var(--muted);
+        font-size: 0.95rem;
+      }
+
+      @keyframes fadeUp {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        :global(.card),
+        :global(.hero h1) {
+          animation: none;
+          transition: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="wrap"><slot /></main>
+  </body>
+</html>
