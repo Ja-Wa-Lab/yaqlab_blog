@@ -31,7 +31,24 @@ const rest = posts.slice(3);
       Miejsce, w którym zbieram przemyślenia o nowych technologiach, AI, infrastrukturze i procesach.
       Przekładam techniczny świat na prosty, biznesowy język — tak, żeby decyzje były szybsze, a wdrożenia spokojniejsze.
     </p>
-    <p style="margin:.4rem 0 0;"><a href="start-here/">Start here →</a></p>
+    <div class="quick-links" style="margin:.75rem 0 0;display:flex;flex-wrap:wrap;gap:.55rem;">
+      <a class="tag" href="tags/">Przeglądaj tagi</a>
+      <a class="tag" href="rss.xml">RSS</a>
+      <a class="tag" href="/yaqlab_blog/tags/security/">Security</a>
+      <a class="tag" href="/yaqlab_blog/tags/ai/">AI / Ops</a>
+      <a class="tag" href="/yaqlab_blog/tags/devops/">DevOps</a>
+    </div>
+  </section>
+
+  <section class="card" style="margin:0 0 1.25rem;">
+    <h2 style="margin-bottom:.5rem;">Start here</h2>
+    <p style="margin-top:0;">Jeśli jesteś tu pierwszy raz, zacznij od tych obszarów. To przekrojowy zestaw tematów: AI, procesy, infrastruktura i bezpieczeństwo — konkretnie i wdrożeniowo.</p>
+    <ul style="margin:.5rem 0 0 1rem;">
+      <li><strong>AI / Ops</strong> — jak zamieniać rozmowy i pomysły w działający proces.</li>
+      <li><strong>Infra / DevOps</strong> — Docker, VPS, praktyka wdrożeń.</li>
+      <li><strong>Security</strong> — Zero Trust, VPN i decyzje architektoniczne.</li>
+      <li><strong>Product / Process</strong> — wymagania, user stories, empatia i delivery.</li>
+    </ul>
   </section>
 
   {featuredPosts.length > 0 ? (
