@@ -1,5 +1,6 @@
 ---
 const { title = 'yaqlab blog', description = 'AI, infra, procesy' } = Astro.props;
+const buildStamp = new Date().toISOString().slice(0, 16).replace('T', ' ');
 ---
 <!doctype html>
 <html lang="pl">
@@ -146,6 +147,7 @@ const { title = 'yaqlab blog', description = 'AI, infra, procesy' } = Astro.prop
       <slot />
       <footer>
         <p>© {new Date().getFullYear()} YAQ Lab Notes · AI, infrastruktura, procesy i bezpieczeństwo prostym językiem.</p>
+        <p style="margin-top:.2rem;">Ostatnia publikacja: {buildStamp} UTC</p>
       </footer>
     </main>
   </body>

@@ -14,8 +14,8 @@ const rest = posts.slice(3);
     style="position:relative;width:100vw;margin-left:calc(50% - 50vw);margin-right:calc(50% - 50vw);margin-top:calc(clamp(1rem, 3vw, 2rem) * -1);overflow:hidden;"
   >
     <img
-      src="https://images.pexels.com/photos/161154/michael-archangel-statue-sculpture-bronze-161154.jpeg?auto=compress&cs=tinysrgb&w=2200"
-      alt="Rzeźba Michała Archanioła sfotografowana od dołu na tle nieba"
+      src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Le_Puy_en_Velay_-_Rocher_et_statue_Notre-Dame_de_France.jpg/1920px-Le_Puy_en_Velay_-_Rocher_et_statue_Notre-Dame_de_France.jpg"
+      alt="Monumentalna rzeźba archanioła na skale, sfotografowana z dołu"
       loading="eager"
       style="display:block;width:100%;height:min(58vh,560px);object-fit:cover;"
     />
@@ -62,6 +62,8 @@ const rest = posts.slice(3);
               <div class="tags">
                 {post.data.tags.slice(0, 3).map((tag) => <span class="tag">{tag}</span>)}
               </div>
+              <p style="margin:.2rem 0 0;">{post.data.excerpt}</p>
+              <p style="margin:.45rem 0 0;"><a href={`posts/${post.slug}/`}>Czytaj wpis →</a></p>
             </article>
           ))}
         </div>
@@ -94,6 +96,8 @@ const rest = posts.slice(3);
               <div class="tags">
                 {post.data.tags.slice(0, 3).map((tag) => <span class="tag">{tag}</span>)}
               </div>
+              <p style="margin:.3rem 0 0;">{post.data.excerpt}</p>
+              <p style="margin:.45rem 0 0;"><a href={`posts/${post.slug}/`}>Czytaj wpis →</a></p>
             </div>
           </li>
         ))}
