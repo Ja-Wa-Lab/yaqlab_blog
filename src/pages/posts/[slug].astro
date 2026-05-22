@@ -1,0 +1,62 @@
+---
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const homeHref = import.meta.env.BASE_URL;
+
+export async function getStaticPaths() {
+  const posts = await getCollection('posts');
+  return posts.map((post) => ({
+    params: { slug: post.slug },
+    props: { post }
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+
+const relatedPosts = (await getCollection('posts'))
+  .filter((candidate) => candidate.slug !== post.slug && candidate.data.status === 'ready')
+  .map((candidate) => ({
+    post: candidate,
+    score: candidate.data.tags.filter((tag) => post.data.tags.includes(tag)).length
+  }))
+  .filter((item) => item.score > 0)
+  .sort((a, b) => b.score - a.score || b.post.data.date.getTime() - a.post.data.date.getTime())
+  .slice(0, 3)
+  .map((item) => item.post);
+---
+<BaseLayout
+  title={post.data.seo_title}
+  description={post.data.seo_description}
+  canonical={`/posts/${post.slug}/`}
+  ogImage={post.data.hero_image}
+  ogType="article"
+>
+  <p style="margin:0 0 1rem;"><a href={homeHref} aria-label="Wróć do strony głównej">← Wróć do landingu</a></p>
+  <article>
+    <div class="hero">
+      <img src={post.data.hero_image} alt={post.data.hero_alt} loading="eager" />
+      <h1>{post.data.hero_h1}</h1>
+    </div>
+    <p><strong>{post.data.title}</strong> · {post.data.lang.toUpperCase()} · {post.data.date.toISOString().slice(0,10)}</p>
+    <div class="tags">
+      {post.data.tags.map((tag) => <a class="tag" href={`../../tags/${tag.toLowerCase()}/`}>{tag}</a>)}
+    </div>
+    <Content />
+
+    {relatedPosts.length > 0 && (
+      <section style="margin-top:2rem;">
+        <h2>Powiązane wpisy</h2>
+        <ul style="list-style:none;padding:0;display:grid;gap:.8rem;">
+          {relatedPosts.map((item) => (
+            <li class="card">
+              <a href={`../${item.slug}/`}><strong>{item.data.title}</strong></a>
+              <div class="meta">{item.data.date.toISOString().slice(0,10)} · {item.data.lang.toUpperCase()}</div>
+            </li>
+          ))}
+        </ul>
+      </section>
+    )}
+  </article>
+</BaseLayout>
