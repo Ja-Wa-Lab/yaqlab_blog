@@ -1,0 +1,35 @@
+---
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('posts');
+  return posts.map((post) => ({
+    params: { slug: post.slug },
+    props: { post }
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+---
+<BaseLayout title={post.data.seo_title} description={post.data.seo_description}>
+  <p style="margin:0 0 1rem;">
+    <a href="../../" aria-label="Wróć do strony głównej">← Wróć do landingu</a>
+  </p>
+  <article>
+    <div class="hero">
+      <img src={post.data.hero_image} alt={post.data.hero_alt} loading="eager" />
+      <h1>{post.data.hero_h1}</h1>
+    </div>
+    <p><strong>{post.data.title}</strong> · {post.data.lang.toUpperCase()} · {post.data.date.toISOString().slice(0,10)}</p>
+    <section class="card" style="margin:.4rem 0 1rem;">
+      <p class="meta" style="margin:0 0 .3rem;">O czym jest ten wpis</p>
+      <p style="margin:0;">{post.data.excerpt}</p>
+    </section>
+    <div class="tags">
+      {post.data.tags.map((tag) => <span class="tag">{tag}</span>)}
+    </div>
+    <Content />
+  </article>
+</BaseLayout>
